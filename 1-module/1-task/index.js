@@ -4,11 +4,11 @@
  * @returns {number}
  */
 function factorial(n) {
-  let res = 1;
+  let factorialResult = 1;
 
   while (n) {
-    res *= n--;
+    factorialResult *= n--;
   }
 	
-  return res;
+  return factorialResult;
 }
