@@ -29,7 +29,7 @@ module.exports = {
     'no-undefined': 'off',
     'camelcase': 'warn',
 
-    'indent': ['warn', 2, {
+    'indent': ['warn', "tab", {
       // continuation indent
       MemberExpression: 'off',
     }],
