@@ -11,7 +11,8 @@
     "karma": "karma start karma.conf.js",
     "lint": "eslint \"./*-module/**/*.js\"",
     "lint:fix": "eslint --fix \"./*-module/**/*.js\"",
-    "test": "npm run karma"
+    "test": "npm run karma",
+    "t": "./node_modules/.bin/karma start karma.conf.js"
   },
   "repository": {
     "type": "git",
