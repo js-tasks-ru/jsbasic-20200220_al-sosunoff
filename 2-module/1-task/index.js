@@ -4,16 +4,17 @@
  * @returns {Number}
  */
 function sumSalary(salaries) {
-  let salarySum = Object.entries(salaries)
-    .reduce((result, currentElement) => {
-      let salary = currentElement[1];
+  let salarySumResult = 0;
 
-      if (!Number.isFinite(salary)) {
-        return result;
-      }
-      
-      return result += salary;
-    }, 0);
+  for (let key in salaries) {
+    let salary = salaries[key];
 
-  return salarySum;
+    if (!Number.isFinite(salary)) {
+      continue;
+    }
+
+    salarySumResult += salary;
+  }
+
+  return salarySumResult;
 }
