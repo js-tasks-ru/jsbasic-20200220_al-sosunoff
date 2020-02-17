@@ -4,6 +4,18 @@
  * @returns {number}
  */
 function factorial(n) {
+  checkFuctorial(n);
+
+  let factorialResult = 1;
+
+  while (n) {
+    factorialResult *= n--;
+  }
+	
+  return factorialResult;
+}
+
+function checkFuctorial(n) {
   if (!isNumber(n)) { 
     throw new TypeError('Значение может быть целым числом');
   }
@@ -15,14 +27,6 @@ function factorial(n) {
   if (n === Infinity) { 
     throw new TypeError('Значение не должно быть бесконечным');
   }
-
-  let factorialResult = 1;
-
-  while (n) {
-    factorialResult *= n--;
-  }
-	
-  return factorialResult;
 }
 
 function isNumber(a) {
