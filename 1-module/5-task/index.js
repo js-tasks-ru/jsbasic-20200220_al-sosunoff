@@ -9,6 +9,14 @@ function truncate(str, maxlength) {
     return str;
   }
 
-  let strCrop = str.substr(0, maxlength - 1);
-  return `${strCrop}…`;
+  return `${cutFromStart(str, maxlength)}…`;
+}
+
+/**
+ * 
+ * @param {string} str 
+ * @param {number} maxlength 
+ */
+function cutFromStart(str, maxlength) {
+  return str.substr(0, maxlength - 1);
 }
