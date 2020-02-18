@@ -16,8 +16,12 @@ function isValid(name) {
 
   let withoutSpace = '[^\\s]';
   let minFourSign = '{4,}';
-  let regex = new RegExp(`^${withoutSpace}${minFourSign}$`);
 
+  return test(name, `^${withoutSpace}${minFourSign}$`);
+}
+
+function test(name, reg) {
+  let regex = new RegExp(reg);
   return regex.test(name);
 }
 
