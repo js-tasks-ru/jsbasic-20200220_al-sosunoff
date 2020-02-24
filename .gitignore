@@ -142,3 +142,6 @@ teacher.karma.conf.js
 .vscode
 
 teacher*
+
+task.2.test.js
+.gitignore
