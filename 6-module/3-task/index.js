@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 class Menu {
   template = `
@@ -26,7 +26,55 @@ class Menu {
   `;
 
   constructor(element) {
+    element.innerHTML = this.template;
+
+    let list = element.querySelectorAll(".list-group-item");
+
+    let backdrop = document.querySelector(".backdrop");
+
+    list.forEach(e => {
+      
+      e.addEventListener("pointerenter", (event) => {
+        let dropdownMenu = event.target.querySelector(".dropdown-menu");
+
+        dropdownMenu.classList.add("show");
+
+        backdrop.classList.add("show");
+      });
+
+      e.addEventListener("pointerleave", (event) => {
+        let dropdownMenu = event.target.querySelector(".dropdown-menu");
+
+        dropdownMenu.classList.remove("show");
+
+        backdrop.classList.remove("show");
+      });
+    
+    });
   }
+
+/*   _strategyOnClick(event, cls) {
+    function upperFirstCharacterInWord(word) {
+      return word[0].toUpperCase() + word.slice(1);
+    }
+
+    function camelize(str) {
+      let words = str.split(/-/);
+      return (
+        words[0] +
+        words
+          .slice(1)
+          .map(upperFirstCharacterInWord)
+          .join("")
+      );
+    }
+
+    let method = camelize(cls.replace(".", ""));
+
+    if (this[method]) {
+      this[method](event, cls);
+    }
+  } */
 }
 
 // Делает класс доступным глобально, сделано для упрощения, чтобы можно было его вызывать из другого скрипта
