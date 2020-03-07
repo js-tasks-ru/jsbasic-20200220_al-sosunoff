@@ -21,12 +21,12 @@ class ProductList {
   }
 
   onClick(event) {
-    ['.product-add-to-cart'].forEach(e => {
+    ['[data-button-role="add-to-cart"]'].forEach(e => {
       this._strategyOnClick(event, e);
     });
   }
 
-  onProductAddToCart(cls, event) {
+  onDataButtonRole(cls, event) {
     let btn = event.target.closest(cls);
 
     if (!btn) {
@@ -35,11 +35,17 @@ class ProductList {
 
     let product = btn.closest('[data-product-id]');
     
+    if (!product) {
+      return;
+    }
+
     let isSure = confirm('Вы уверенны, что хотите добавить этот товар в корзину?');
 
-    if (product && isSure) {
-      this.addToCart(this.products.find(x => x.id == product.dataset.productId));
+    if (!isSure) {
+      return;
     }
+
+    this.addToCart(this.products.find(x => x.id == product.dataset.productId));
   }
 
   addToCart(product) {
@@ -59,7 +65,7 @@ class ProductList {
   }
 
   getCardHtml(product) {
-    let card = `
+    let productHTML = `
       <div data-product-id="${product.id}" class="products-list-product col-md-6 col-lg-4 mb-4">
         <div class="card">
             <div class="card-img-wrap">
@@ -85,7 +91,7 @@ class ProductList {
         </div>
       </div>`;
 
-    return new DOMParser().parseFromString(card, 'text/html').body.childNodes[0];
+    return new DOMParser().parseFromString(productHTML, 'text/html').body.childNodes[0];
   }
 
   async show() {
@@ -102,7 +108,9 @@ class ProductList {
       x => 'on' + x.join(''),
       x => x.map(word => word.substr(0, 1).toUpperCase() + word.substring(1)),
       x => x.split('-'),
-      x => x.replace(/\./g, '')
+      x => x.slice(0, 1).toString(),
+      x => x.split('='),
+      x => x.replace(/[\.\[\]]/g, ''),
     );
 
     let method = getMethodEventName(cls);
