@@ -21,12 +21,12 @@ class ProductList {
   }
 
   onClick(event) {
-    ['.product-add-to-cart'].forEach(e => {
+    ['[data-button-role]'].forEach(e => {
       this._strategyOnClick(event, e);
     });
   }
 
-  onProductAddToCart(cls, event) {
+  onDataButtonRole(cls, event) {
     let btn = event.target.closest(cls);
 
     if (!btn) {
@@ -102,7 +102,7 @@ class ProductList {
       x => 'on' + x.join(''),
       x => x.map(word => word.substr(0, 1).toUpperCase() + word.substring(1)),
       x => x.split('-'),
-      x => x.replace(/\./g, '')
+      x => x.replace(/[\.\[\]]/g, ''),
     );
 
     let method = getMethodEventName(cls);
