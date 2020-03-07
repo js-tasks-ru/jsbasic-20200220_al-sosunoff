@@ -56,7 +56,7 @@ class CheckoutProductList {
       return;
     }
 
-    products.splice(products.indexOf(products.find(x => x.id == id)), 1)
+    products.splice(products.indexOf(products.find(x => x.id == id)), 1);
 
     localStorage.setItem(this.productsStoreKey, JSON.stringify(products));
   }
