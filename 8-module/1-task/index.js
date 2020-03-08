@@ -95,12 +95,13 @@ class ProductList {
   }
 
   async show() {
-    return await fetch(this.productsUrl)
-      .then(productObj => productObj.json())
-      .then(products => {
-        this.products = products;
-        this.homepageCards.append(...products.map(this.getCardHtml.bind(this)));
-      });
+    let productObj = await fetch(this.productsUrl);
+      
+    let products = await productObj.json();
+
+    this.products = products;
+    
+    this.homepageCards.append(...products.map(this.getCardHtml.bind(this)));
   }
   
   _strategyOnClick(event, cls) {
